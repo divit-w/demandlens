@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+
+/* ── Root Variables ─────────────────────────────────────────────────────── */
+:root {
+    --bg:        #0a0d14;
+    --surface:   #0f1520;
+    --card:      #131927;
+    --card2:     #111825;
+    --border:    rgba(255,255,255,0.07);
+    --border2:   rgba(255,255,255,0.04);
+    --text:      #e8edf5;
+    --muted:     #7a8499;
+    --primary:   #6e76e5;
+    --primary2:  #5a62d4;
+    --accent:    #3fb950;
+    --teal:      #4fd1c5;
+    --purple:    #b794f4;
+    --orange:    #f6ad55;
+    --pink:      #f687b3;
+    --shadow:    rgba(0,0,0,0.6);
+}
+
+/* ── Global Reset ───────────────────────────────────────────────────────── */
+html, body, [class*="css"] {
+    font-family: 'Syne', sans-serif !important;
+}
+
+/* ── App Background ─────────────────────────────────────────────────────── */
+.stApp {
+    background: var(--bg) !important;
+    color: var(--text);
+}
+
+[data-testid="stAppViewContainer"] {
+    background: var(--bg) !important;
+}
+
+[data-testid="stHeader"] {
+    background: transparent !important;
+    display: none !important;
+}
+
+/* ── Hide default Streamlit elements ────────────────────────────────────── */
+#MainMenu, footer, header { visibility: hidden !important; }
+[data-testid="stDecoration"] { display: none !important; }
+
+/* ── Main container ─────────────────────────────────────────────────────── */
+.main .block-container {
+    padding-top: 0 !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 100% !important;
+}
+
+/* ── SIDEBAR — hidden / minimal ─────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: rgba(9, 11, 17, 0.98) !important;
+    border-right: 1px solid var(--border) !important;
+    width: 220px !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--text) !important;
+}
+
+[data-testid="stSidebar"] .stRadio label {
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    color: var(--muted) !important;
+}
+
+[data-testid="stSidebar"] .stRadio label:hover {
+    background: rgba(110, 118, 229, 0.12);
+    color: var(--text) !important;
+}
+
+[data-testid="stSidebar"] .stRadio [data-checked="true"] label {
+    background: rgba(110, 118, 229, 0.18) !important;
+    color: var(--primary) !important;
+}
+
+/* ── TOP HEADER BAR ─────────────────────────────────────────────────────── */
+.demandlens-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.em-brand-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 2px;
+}
+
+.em-brand-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.em-brand-title span {
+    color: var(--primary);
+}
+
+.em-brand-sub {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+}
+
+.em-status-pills {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.em-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+}
+
+.em-pill-live {
+    border-color: rgba(63, 185, 80, 0.3);
+    color: var(--accent);
+}
+
+.em-pill-live::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    animation: pulse-dot 2s infinite;
+}
+
+.em-pill-r2   { color: #a78bfa; border-color: rgba(167,139,250,0.25); }
+.em-pill-lift { color: var(--accent); border-color: rgba(63,185,80,0.25); }
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(63,185,80,0.5); }
+    50%       { opacity: 0.7; box-shadow: 0 0 0 4px rgba(63,185,80,0); }
+}
+
+/* ── TAB NAV (Market Simulator / Model Training / Python Core) ──────────── */
+.stTabs [data-baseweb="tab-list"] {
+    background: var(--surface) !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    padding: 0 28px !important;
+    gap: 0 !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    color: var(--muted) !important;
+    border-radius: 0 !important;
+    padding: 14px 20px !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.02em !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    margin-bottom: -1px !important;
+    transition: all 0.2s ease !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: var(--text) !important;
+    background: rgba(255,255,255,0.03) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: var(--primary) !important;
+    border-bottom-color: var(--primary) !important;
+    background: transparent !important;
+    font-weight: 600 !important;
+}
+
+.stTabs [data-baseweb="tab-panel"] {
+    padding: 0 !important;
+}
+
+/* ── PANEL CARDS ────────────────────────────────────────────────────────── */
+.em-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.em-panel-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 14px;
+}
+
+/* ── METRIC MINI CARDS (PED INDEX / DEMAND Δ) ───────────────────────────── */
+.em-metric-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+
+.em-metric-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 8px;
+}
+
+.em-metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    font-family: 'Syne', sans-serif;
+    line-height: 1;
+}
+
+.em-metric-value.positive { color: var(--accent); }
+.em-metric-value.negative { color: #f87171; }
+.em-metric-value.primary  { color: var(--primary); }
+
+/* NET REVENUE IMPACT card */
+.em-impact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-height: 70px;
+}
+
+.em-impact-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 10px;
+}
+
+/* ── KPI CARDS (Overview etc.) ──────────────────────────────────────────── */
+.em-kpi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.em-kpi-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 10px;
+}
+
+.em-kpi-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.em-kpi-delta {
+    font-size: 11px;
+    color: var(--accent);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── SECTION HEADERS ────────────────────────────────────────────────────── */
+.em-section {
+    margin: 24px 0 16px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border2);
+}
+
+.em-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── PLOTLY CHARTS ──────────────────────────────────────────────────────── */
+.stPlotlyChart {
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    padding: 4px !important;
+    overflow: hidden !important;
+}
+
+/* ── SLIDERS ────────────────────────────────────────────────────────────── */
+[data-testid="stSlider"] {
+    padding: 0 2px;
+}
+
+[data-testid="stSlider"] > div > div > div {
+    background: var(--primary) !important;
+}
+
+[data-testid="stSlider"] [role="slider"] {
+    background: #fff !important;
+    border: 2px solid var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(110,118,229,0.2) !important;
+}
+
+[data-testid="stSlider"] > div > div {
+    background: rgba(255,255,255,0.08) !important;
+}
+
+/* ── SELECTBOX ──────────────────────────────────────────────────────────── */
+[data-testid="stSelectbox"] > div > div {
+    background: var(--card2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    color: var(--text) !important;
+}
+
+[data-testid="stSelectbox"] svg { color: var(--muted) !important; }
+
+/* ── DATAFRAME ──────────────────────────────────────────────────────────── */
+.stDataFrame {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ── BUTTONS ────────────────────────────────────────────────────────────── */
+.stButton > button {
+    background: var(--primary) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 10px 22px !important;
+    letter-spacing: 0.02em !important;
+    transition: all 0.2s ease !important;
+    font-family: 'Syne', sans-serif !important;
+}
+
+.stButton > button:hover {
+    background: var(--primary2) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 18px rgba(110,118,229,0.35) !important;
+}
+
+/* ── INFO / WARNING ─────────────────────────────────────────────────────── */
+.stInfo, [data-testid="stInfo"] {
+    background: rgba(110,118,229,0.1) !important;
+    border: 1px solid rgba(110,118,229,0.25) !important;
+    border-radius: 8px !important;
+    color: var(--text) !important;
+}
+
+.stWarning, [data-testid="stWarning"] {
+    background: rgba(246,173,85,0.1) !important;
+    border: 1px solid rgba(246,173,85,0.25) !important;
+    border-radius: 8px !important;
+}
+
+/* ── TEXT ───────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+    color: var(--text) !important;
+    letter-spacing: -0.02em;
+    font-family: 'Syne', sans-serif !important;
+}
+
+p, li, span { color: var(--text); }
+
+.stMarkdown p { color: var(--text) !important; }
+
+hr {
+    border-color: var(--border) !important;
+    margin: 20px 0 !important;
+}
+
+/* ── EXPANDER ───────────────────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: var(--muted) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+/* ── METRICS (native Streamlit) ─────────────────────────────────────────── */
+[data-testid="stMetric"] {
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    padding: 14px 16px !important;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 9px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.14em !important;
+    color: var(--muted) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--text) !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    font-family: 'Syne', sans-serif !important;
+}
+
+[data-testid="stMetricDelta"] {
+    color: var(--accent) !important;
+    font-size: 11px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* ── SCROLLBAR ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* ── INPUT LABELS ───────────────────────────────────────────────────────── */
+[data-testid="stWidgetLabel"] {
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: var(--muted) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 500 !important;
+}
+
+/* ── TABS (inner content area) ──────────────────────────────────────────── */
+.stTabs > div:last-child {
+    padding: 20px 0 0 0 !important;
+}
+
+/* ── RADIO ──────────────────────────────────────────────────────────────── */
+.stRadio [role="radiogroup"] {
+    display: flex;
+    gap: 8px;
+}
+
+.stRadio label {
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    color: var(--muted) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.stRadio label:hover {
+    border-color: rgba(110,118,229,0.4) !important;
+    color: var(--text) !important;
+}
+
+/* ── MULTISELECT ────────────────────────────────────────────────────────── */
+[data-testid="stMultiSelect"] > div > div {
+    background: var(--card2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+}
+
+/* ── SPINNER ────────────────────────────────────────────────────────────── */
+.stSpinner > div {
+    border-top-color: var(--primary) !important;
+}
